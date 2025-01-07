@@ -1,24 +1,18 @@
-import { createContext, useState } from "react"
+import { createContext, useState } from "react";
 import PropTypes from 'prop-types';
 
-export const CalcContext = createContext()
-const CalcProvider = ({ children }) => {
-  const [calc, setCalc] = useState({
-    sign: "",
-    num: 0,
-    res: 0
-  });
+export const CalcContext = createContext();
 
-  const providerValue = {
-    calc, setCalc
-  }
+const CalcProvider = ({ children }) => {
+  const [state, setState] = useState({});
 
   return (
-    <CalcContext.Provider value={providerValue}>
+    <CalcContext.Provider value={[state, setState]}>
       {children}
     </CalcContext.Provider>
-  )
-}
+  );
+};
+
 CalcProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
